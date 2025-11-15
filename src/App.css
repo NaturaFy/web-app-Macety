@@ -1,0 +1,139 @@
+/* --- Estilos Globales del Layout --- */
+
+/* 1. Layout para páginas con barra lateral (Home, Profile, etc.) */
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+  /* --- ¡AQUÍ ESTÁ EL CAMBIO! --- */
+  background-color: #F7FCF7; /* <-- Tu nuevo color de fondo */
+}
+
+/* 2. Layout para páginas sin barra (Login, Register, AddPlant) */
+.main-content-full {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-height: 100vh;
+}
+
+/* 3. Estilos de la Barra Lateral (Sidebar) */
+.sidebar {
+  width: 260px;
+  background-color: #ffffff;
+  border-right: 1px solid #eee;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+}
+
+.sidebar-profile {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 2.5rem;
+  padding-left: 0.5rem;
+}
+
+.sidebar-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.sidebar-username {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #222;
+}
+
+/* 4. Contenedor de Links */
+.sidebar-links {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; 
+  overflow-y: auto; 
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  margin-bottom: 0.5rem;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #555;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.sidebar-link:hover {
+  background-color: #f4f4f4;
+  color: #222;
+}
+
+.sidebar-link.active {
+  background-color: #E8F5E9;
+  color: #2a4a3a;
+  font-weight: 600;
+}
+.sidebar-link.active i {
+  color: #2a4a3a;
+}
+
+.sidebar-link i {
+  font-size: 1.2rem;
+  color: #777;
+  width: 20px;
+  text-align: center;
+}
+
+/* 5. Footer del Sidebar (Pegado al fondo) */
+.sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
+/* 6. Estilos del Área de Contenido Principal */
+.main-content-area {
+  flex-grow: 1;
+  overflow-y: auto; 
+}
+
+
+/* --- Estilos de Macety (del Login) --- */
+.macety-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px; 
+}
+.macety-image {
+  width: 180px;  
+  height: 180px; 
+  object-fit: cover;
+  transition: transform 0.3s ease-out;
+}
+.macety-image:hover {
+  transform: scale(1.02);
+}
+.macety-greeting {
+  font-size: 1.1rem;
+  color: #333;
+  text-align: center;
+  line-height: 1.4;
+  margin-top: 15px;
+  max-width: 300px;
+  font-weight: 500;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
+}
+.macety-greeting b {
+  color: #5a7d58;
+  font-weight: 700;
+}

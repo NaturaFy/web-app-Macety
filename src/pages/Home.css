@@ -1,0 +1,224 @@
+/* --- Estilos del Dashboard (Home.css) --- */
+.home-dashboard {
+  padding: 2rem 3rem;
+  background-color: #fBfDfA; /* Un verde muy, muy claro */
+  flex-grow: 1;
+}
+
+.dashboard-header {
+  margin-bottom: 2rem;
+}
+
+.dashboard-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #2a4a3a;
+  margin: 0;
+}
+
+.dashboard-header p {
+  font-size: 1rem;
+  color: #555;
+  margin: 0.25rem 0 0;
+}
+
+.plant-grid {
+  display: grid;
+  /* 3 columnas en escritorio, 1 en móvil */
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+
+/* --- Estilos de la PlantCard --- */
+.plant-card {
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.plant-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  object-fit: cover;
+  background-color: #f4f4f4;
+}
+
+.plant-info {
+  flex: 1;
+}
+
+.plant-name {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #222;
+  margin: 0;
+}
+
+.plant-sci-name {
+  font-size: 0.9rem;
+  color: #777;
+  margin: 0.2rem 0;
+  font-style: italic;
+}
+
+.plant-location {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 0.3rem 0 0;
+}
+.plant-location .fa-location-dot {
+  color: #E57373; /* Rojo suave */
+}
+
+/* Botón de Estado */
+.status-button {
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  padding: 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: default;
+}
+
+.status-button.needs-water {
+  background-color: #FFF3E0; /* Naranja claro */
+  color: #E65100; /* Naranja oscuro */
+}
+
+.status-button.status-ok {
+  background-color: #E8F5E9; /* Verde claro */
+  color: #1B5E20; /* Verde oscuro */
+}
+
+/* Grid de Datos */
+.data-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2 columnas */
+  gap: 1rem;
+}
+
+.data-item {
+  background-color: #f9fBf9;
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.data-item i {
+  font-size: 1.5rem;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+/* Colores de iconos */
+.icon-temp { color: #E57373; background-color: #FFEBEE; }
+.icon-water { color: #64B5F6; background-color: #E3F2FD; }
+.icon-lux { color: #FFD54F; background-color: #FFFDE7; }
+.icon-humidity { color: #81C784; background-color: #E8F5E9; }
+
+.data-value {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.data-label {
+  display: block;
+  font-size: 0.8rem;
+  color: #666;
+}
+.recent-activity-section {
+  margin-top: 3rem; /* Espacio entre el grid de plantas y esta sección */
+}
+
+.activity-header {
+  font-size: 1.75rem; /* Un poco más pequeño que el H1 */
+  font-weight: 600;
+  color: #2a4a3a;
+  text-align: center; /* Centrado como en la imagen */
+  margin-bottom: 1.5rem;
+}
+
+.activity-card {
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 1rem 1.5rem; /* Padding vertical más pequeño */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+  max-width: 800px; /* Ancho máximo para la tarjeta */
+  margin: 0 auto; /* Centrar la tarjeta */
+}
+
+.activity-item {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem; /* Espacio entre icono y texto */
+  padding: 1.25rem 0.5rem; /* Espacio vertical entre items */
+}
+
+/* Línea separadora, como en tu imagen */
+.activity-item:not(:last-child) {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.activity-icon {
+  font-size: 1.25rem;
+  color: #64B5F6; /* Mismo azul que el icono de "Nivel de agua" */
+  background-color: #E3F2FD; /* Mismo fondo azul claro */
+  border-radius: 50%; /* Círculo */
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0; /* Evita que el icono se encoja */
+}
+
+.activity-details {
+  flex-grow: 1;
+}
+
+.activity-text {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+  margin: 0;
+}
+
+.activity-timestamp {
+  font-size: 0.85rem;
+  color: #777;
+  margin: 0.2rem 0 0;
+}
+.dashboard-message {
+  padding: 4rem 2rem;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #555;
+  flex-grow: 1;
+  display: grid;
+  place-items: center;
+}
+
+.dashboard-message.error {
+  color: #D32F2F; /* Rojo */
+  background-color: #FFEBEE;
+  border: 1px solid #E57373;
+  border-radius: 12px;
+  margin: 2rem;
+}

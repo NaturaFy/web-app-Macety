@@ -1,0 +1,109 @@
+/* --- Estilos para la Página de Perfil --- */
+
+.profile-page {
+  /* Fondo blanco como en la imagen */
+  background-color: #ffffff;
+  padding: 2.5rem 4rem; 
+  height: 100%;
+  min-height: 100vh; /* Asegura que ocupe toda la altura */
+  box-sizing: border-box; /* Incluye el padding en la altura */
+}
+
+.profile-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #222;
+  margin-top: 0;
+  margin-bottom: 2rem;
+}
+
+/* Bloque de Info de Usuario */
+.profile-user-info {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.profile-avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-user-details h2 {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #222;
+}
+
+.profile-user-details p {
+  margin: 0.25rem 0 0;
+  font-size: 1rem;
+  color: #9dcb8a; /* Verde */
+  font-weight: 500;
+}
+
+/* Lista de Ajustes */
+.settings-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+.settings-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-width: 400px; /* Limita el ancho de la lista */
+}
+
+.settings-list li {
+  margin-bottom: 0.5rem;
+}
+
+.settings-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: background-color 0.2s, color 0.2s;
+  
+  /* Para el botón de logout */
+  width: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.settings-link:hover {
+  background-color: #f4f4f4;
+}
+
+.settings-link i {
+  font-size: 1.2rem;
+  color: #555;
+  width: 20px; /* Ancho fijo para alinear texto */
+  text-align: center;
+}
+
+/* Estilo especial para el botón de cerrar sesión */
+.logout-btn {
+  color: #D32F2F; /* Rojo */
+}
+.logout-btn i {
+  color: #D32F2F;
+}
+.logout-btn:hover {
+  background-color: #FFEBEE; /* Fondo rosa claro */
+  color: #D32F2F;
+}

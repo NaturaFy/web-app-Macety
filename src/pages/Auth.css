@@ -1,0 +1,335 @@
+/* Estilos para las páginas de autenticación (Login y Register) */
+.auth-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  flex-grow: 1;
+
+  /* --- FONDO DE PLANTAS CORRECTO --- */
+  background-image: url('../assets/fondo3.png');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.auth-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2.5rem;
+  width: 100%;
+  box-sizing: border-box; 
+  flex-shrink: 0;
+  background-color: #fcfdfc; 
+  border-bottom: 1px solid #f0f2f0; 
+}
+
+.auth-header .logo {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #2c2c2c;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.auth-header .logo::before {
+  content: 'N';
+  background-color: #333;
+  color: #fff;
+  font-weight: bold;
+  font-size: 0.8rem;
+  padding: 4px 6px;
+  border-radius: 4px;
+  line-height: 1;
+}
+
+.auth-header .header-button {
+  background-color: #eaf3e8; 
+  color: #5a7d58;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+}
+
+.auth-header .header-button:hover {
+  background-color: #dde8d9;
+}
+
+.auth-main {
+  flex-grow: 1; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  position: relative;
+}
+
+.auth-back-arrow {
+  position: absolute;
+  top: 25px;
+  left: 40px;
+  background: #ffffff;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  font-size: 24px;
+  color: #555;
+  text-decoration: none;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.2s;
+}
+
+.auth-back-arrow:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.auth-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 40px; 
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  box-sizing: border-box; 
+  animation: deployAnimation 0.4s ease-out;
+}
+
+.auth-card h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #333;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.auth-form .form-group {
+  width: 100%;
+}
+
+/* --- ESTILO SOLO PARA EL CAMPO DE EMAIL (Y OTROS) --- */
+.auth-form .form-input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #dfe6ec;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #fcfdff;
+  box-sizing: border-box;
+}
+
+.auth-form .form-input::placeholder {
+  color: #999;
+}
+
+.auth-form .form-input:focus {
+  outline: none;
+  border-color: #9dcb8a;
+  box-shadow: 0 0 0 2px #9dcb8a30;
+}
+
+/* --- ESTILOS PARA LA "PASTILLA" DE CONTRASEÑA --- */
+
+.password-wrapper {
+  position: relative;
+  display: flex; 
+  align-items: center;
+  width: 100%;
+  border: 1px solid #dfe6ec;
+  border-radius: 8px;
+  background-color: #fcfdff; 
+  box-sizing: border-box; 
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.password-wrapper .form-input-with-eye { 
+  flex-grow: 1; 
+  padding: 14px 16px;
+  border: none; 
+  border-radius: 0; 
+  background-color: transparent; 
+  font-size: 1rem;
+  box-sizing: border-box;
+  padding-right: 50px; 
+}
+
+.password-wrapper .form-input-with-eye::placeholder {
+  color: #999;
+}
+
+.password-wrapper .form-input-with-eye:focus {
+  outline: none; 
+}
+
+.password-wrapper:focus-within {
+  border-color: #9dcb8a;
+  box-shadow: 0 0 0 2px #9dcb8a30;
+}
+
+.eye-icon-btn {
+  position: absolute; 
+  right: 5px; 
+  top: 50%;
+  transform: translateY(-50%); 
+  z-index: 10; 
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  margin: 0;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999; 
+  transition: color 0.2s;
+}
+
+.eye-icon-btn:hover {
+  color: #333; 
+}
+
+.eye-icon-btn i {
+  font-size: 1.1rem; 
+  line-height: 1; 
+}
+
+/* --- FIN DE ESTILOS DE CONTRASEÑA --- */
+
+
+.auth-form .submit-btn {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  background-color: #9dcb8a; 
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-top: 10px;
+}
+
+.auth-form .submit-btn:hover {
+  background-color: #8dbb7a;
+}
+
+.auth-card-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+}
+
+.auth-card-footer a {
+  color: #555;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.auth-card-footer a:hover {
+  text-decoration: underline;
+}
+
+.auth-card-footer a b {
+  color: #9dcb8a;
+  font-weight: 600;
+}
+
+/* Estilo para los mensajes de error */
+.auth-error-message {
+  color: #D32F2F; 
+  background-color: #FFEBEE; 
+  border: 1px solid #E57373;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 10px; 
+}
+
+/* Animación de clic */
+.auth-header .header-button:active,
+.auth-form .submit-btn:active,
+.auth-card-footer a:active {
+  transform: scale(0.98);
+  opacity: 0.9;
+  transition: transform 0.05s ease-out;
+}
+
+/* Animación de despliegue */
+@keyframes deployAnimation {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- ¡NUEVOS ESTILOS PARA EL MEDIDOR DE FUERZA! --- */
+
+.password-strength-meter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: -10px; /* Lo sube un poco */
+  margin-bottom: 10px; /* Espacio antes del siguiente campo */
+  height: 15px; 
+}
+
+.strength-bar-track {
+  flex-grow: 1; /* Ocupa el espacio disponible */
+  height: 6px;
+  background-color: #eee;
+  border-radius: 3px;
+  overflow: hidden; 
+}
+
+.strength-bar {
+  height: 100%;
+  width: 0; /* Empieza en 0 */
+  border-radius: 3px;
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+/* Colores y anchos de la barra */
+.strength-bar.weak {
+  width: 33%;
+  background-color: #D32F2F; /* Rojo */
+}
+.strength-bar.medium {
+  width: 66%;
+  background-color: #FFA000; /* Naranja */
+}
+.strength-bar.strong {
+  width: 100%;
+  background-color: #9dcb8a; /* Verde (como el botón) */
+}
+
+/* Texto (Débil, Media, Fuerte) */
+.strength-text {
+  font-size: 0.85rem;
+  color: #333;
+  font-weight: 500;
+  white-space: nowrap; /* Evita que el texto se parta */
+}

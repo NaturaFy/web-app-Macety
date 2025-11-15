@@ -1,0 +1,215 @@
+/* --- Estilos para el Asistente de Añadir Planta (Fondo Blanco) --- */
+
+/* 1. Layout Claro (Fondo Blanco) */
+.add-plant-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #ffffff; /* ¡FONDO BLANCO! */
+  color: #333; /* Texto oscuro por defecto */
+}
+
+/* Cabecera clara para que combine con el fondo */
+.add-plant-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2.5rem;
+  background-color: #ffffff; /* Header claro */
+  border-bottom: 1px solid #eee; /* Borde sutil */
+}
+
+/* Logo oscuro para que se vea en fondo claro */
+.add-plant-logo {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #333; /* Texto de logo oscuro */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.add-plant-logo i {
+  font-size: 1.3rem;
+  color: #333; /* Icono de logo oscuro */
+}
+
+/* Botón de ayuda claro */
+.add-plant-help {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #555; /* Icono de ayuda oscuro */
+  text-decoration: none;
+  background: #f0f0f0; /* Fondo claro */
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  line-height: 1;
+  transition: all 0.2s;
+}
+.add-plant-help:hover {
+  background: #ddd;
+  color: #000;
+}
+
+.add-plant-main {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  /* El fondo se hereda del .add-plant-layout (blanco) */
+}
+
+/* --- ESTILOS DE CONTENIDO (SIN CAMBIOS, COMO PEDISTE) --- */
+
+/* 2. Contenido Claro (Tarjeta Blanca) - SIN CAMBIOS */
+.add-plant-content {
+  background-color: #ffffff; /* Tarjeta blanca */
+  color: #333; /* Texto oscuro */
+  border-radius: 16px;
+  padding: 2.5rem 3rem;
+  width: 100%;
+  max-width: 600px; /* Ancho del contenido */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  text-align: left; /* Texto alineado a la izquierda */
+}
+
+.add-plant-content h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #222;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  text-align: center; /* Títulos centrados */
+}
+.add-plant-content p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 2rem;
+  text-align: center; /* Párrafos centrados */
+}
+
+/* 3. Botones (Verde brillante y secundario) - SIN CAMBIOS */
+.add-plant-btn {
+  display: inline-block;
+  background-color: #00D15E; /* Verde brillante */
+  color: #ffffff;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.add-plant-btn:hover {
+  background-color: #00B350;
+  transform: scale(1.03);
+}
+
+/* Botón secundario (Anterior) - SIN CAMBIOS */
+.add-plant-btn-secondary {
+  background-color: #f0f0f0; 
+  color: #555;
+  font-weight: 500;
+}
+.add-plant-btn-secondary:hover {
+  background-color: #e0e0e0;
+  transform: scale(1.03);
+}
+
+/* Contenedor para botones Anterior/Siguiente - SIN CAMBIOS */
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2.5rem;
+}
+
+/* 4. Estilos de Formularios (Paso 2 y 4) - SIN CAMBIOS */
+.form-group-wizard {
+  margin-bottom: 1.5rem;
+  text-align: left; 
+}
+.form-group-wizard label {
+  display: block;
+  font-weight: 500;
+  color: #444;
+  margin-bottom: 0.5rem;
+}
+.form-input-wizard {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #dfe6ec;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #f9f9f9; 
+  box-sizing: border-box;
+}
+.form-input-wizard:focus {
+  outline: none;
+  border-color: #9dcb8a;
+  background-color: #fff;
+  box-shadow: 0 0 0 2px #9dcb8a30;
+}
+
+/* 5. Checklist Detallada (Paso 3) - SIN CAMBIOS */
+.wizard-checklist-detailed {
+  list-style: none;
+  padding: 0;
+  margin: 2.5rem 0 0;
+  text-align: left;
+}
+.wizard-checklist-detailed li {
+  display: flex;
+  align-items: flex-start; 
+  gap: 1rem; 
+  margin-bottom: 1.5rem;
+}
+.wizard-checklist-detailed .checklist-icon {
+  background-color: #f0f0f0; 
+  border-radius: 8px;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.wizard-checklist-detailed .checklist-icon i {
+  color: #2a4a3a; /* Verde oscuro */
+  font-size: 1.2rem;
+}
+.wizard-checklist-detailed .checklist-text strong {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.2rem;
+}
+.wizard-checklist-detailed .checklist-text span {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.4;
+}
+
+/* Ocultamos la checklist simple (del tema blanco) */
+.wizard-checklist {
+  display: none;
+}
+.auth-error-message {
+  color: #D32F2F; 
+  background-color: #FFEBEE; 
+  border: 1px solid #E57373;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 1.5rem; /* Espacio antes del botón */
+}

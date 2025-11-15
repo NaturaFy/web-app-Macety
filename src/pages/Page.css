@@ -1,0 +1,185 @@
+/* --- Estilos para Páginas de Contenido Genéricas --- */
+
+.page-content {
+  background-color: #ffffff;
+  padding: 2.5rem 4rem; 
+  height: 100%;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.page-content h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #222;
+  margin-top: 0;
+  margin-bottom: 2rem;
+}
+
+.page-content p {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+  max-width: 800px; /* Limita el ancho del texto */
+}
+
+/* --- Estilos para Lista de Notificaciones --- */
+.notification-list {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+  max-width: 800px;
+}
+
+.notification-item {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.25rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.notification-item.unread {
+  background-color: #f7fcf7;
+  border-left: 4px solid #9dcb8a;
+  padding-left: 1.25rem;
+}
+
+.notification-item i {
+  font-size: 1.25rem;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.icon-water { color: #64B5F6; background-color: #E3F2FD; }
+.icon-lux { color: #FFD54F; background-color: #FFFDE7; }
+.icon-community { color: #8C9EFF; background-color: #E8EAF6; }
+
+
+.notification-details p {
+  margin: 0;
+  color: #333;
+}
+.notification-details p strong {
+  font-weight: 600;
+  color: #111;
+}
+.notification-details .timestamp {
+  font-size: 0.85rem;
+  color: #777;
+  margin-top: 0.2rem;
+}
+
+/* --- Estilos para FAQ (Página de Ayuda) --- */
+.faq-list {
+  margin-top: 2.5rem;
+  max-width: 800px;
+}
+
+.faq-item {
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.faq-item:last-child {
+  border-bottom: none;
+}
+
+.faq-item h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 0.75rem 0;
+}
+
+.faq-item p {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* --- Estilos para Formulario (Editar Perfil) --- */
+.profile-form {
+  max-width: 600px;
+  margin-top: 2rem;
+}
+
+.profile-form .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.profile-form .form-group label {
+  display: block;
+  font-weight: 500;
+  color: #444;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.profile-form .form-input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #dfe6ec;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #fcfdff;
+  box-sizing: border-box;
+}
+.profile-form .form-input:focus {
+  outline: none;
+  border-color: #9dcb8a;
+  box-shadow: 0 0 0 2px #9dcb8a30;
+}
+
+.submit-btn {
+  display: inline-block;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 8px;
+  background-color: #9dcb8a; 
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-top: 1rem;
+}
+.submit-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+.submit-btn:hover:not(:disabled) {
+  background-color: #8dbb7a;
+}
+/* Título de sección (ej: "Información Personal") */
+.form-section-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #333;
+  margin-top: 2.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.5rem;
+}
+
+/* Estilos para el Checkbox */
+.form-group-checkbox {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.form-group-checkbox label {
+  font-weight: 500;
+  color: #444;
+  font-size: 0.9rem;
+  margin-left: 0.75rem;
+}
+
+.form-group-checkbox .form-checkbox {
+  width: 18px;
+  height: 18px;
+  accent-color: #9dcb8a; /* Color verde */
+}
