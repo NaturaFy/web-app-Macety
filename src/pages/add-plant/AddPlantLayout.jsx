@@ -1,25 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Outlet, Link } from 'react-router-dom';
-import './AddPlant.css'; // Importamos los estilos del asistente
+import './AddPlant.css';
 
 function AddPlantLayout() {
+  // 1. ESTADO COMPARTIDO (Memoria del Asistente)
+  // Aquí guardaremos el ID del sensor capturado en el Paso 1
+  const [wizardData, setWizardData] = useState({
+    deviceId: '', 
+  });
+
+  // 2. FUNCIÓN PARA ACTUALIZAR DATOS
+  const updateWizardData = (newData) => {
+    setWizardData(prev => ({ ...prev, ...newData }));
+  };
+
   return (
     <div className="add-plant-layout">
-      {/* Header del Asistente (Oscuro) */}
       <header className="add-plant-header">
         <Link to="/" className="add-plant-logo">
           <i className="fa-solid fa-leaf"></i>
           NaturaFy
         </Link>
-        {/* Botón de ayuda (?) */}
-        <Link to="/help" className="add-plant-help" aria-label="Ayuda">
-          ?
-        </Link>
+        <Link to="/help" className="add-plant-help" aria-label="Ayuda">?</Link>
       </header>
 
-      {/* Contenido principal (aquí se renderizarán los pasos) */}
       <main className="add-plant-main">
-        <Outlet />
+        {/* 3. ¡IMPORTANTE! Pasamos el contexto aquí para que Step1 no falle */}
+        <Outlet context={{ wizardData, updateWizardData }} />
       </main>
     </div>
   );

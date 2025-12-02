@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Auth.css'; 
-
-const REGISTER_API_URL = 'http://localhost:8081/api/v1/auth/register';
+import { API_BASE_URL } from '../config'; // Tu configuración importada
 
 function Register() {
   const navigate = useNavigate();
@@ -37,7 +36,7 @@ function Register() {
 
     const name = e.target.name.value;
     const email = e.target.email.value;
-    const phone = e.target.phone.value; // <-- ¡NUEVO CAMPO!
+    // Eliminado: const phone = e.target.phone.value;
     const password = e.target.password.value;
     const confirmPassword = e.target.confirmPassword.value;
 
@@ -48,23 +47,31 @@ function Register() {
     }
     
     try {
-      const response = await fetch(REGISTER_API_URL, {
+      const response = await fetch(`${API_BASE_URL}/api/v1/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          name: name, // (Tu backend actual usa 'name', no 'first_name')
+          name: name,
           email: email,
-          phone_number: phone, // <-- ¡NUEVO CAMPO ENVIADO!
-          password: password,
+          password: password
+          // Eliminado: phone: phone
         }),
       });
 
-      const data = await response.json(); 
-      if (!response.ok) {
-        throw new Error(data.message || 'Error al crear la cuenta');
+      let data;
+      const contentType = response.headers.get("content-type");
+      if (contentType && contentType.indexOf("application/json") !== -1) {
+          data = await response.json();
+      } else {
+          data = await response.text(); 
       }
 
-      console.log('Cuenta creada:', data);
+      if (!response.ok) {
+        const errorMessage = (typeof data === 'object' && data.message) ? data.message : (typeof data === 'string' ? data : 'Error al crear la cuenta');
+        throw new Error(errorMessage);
+      }
+
+      console.log('Cuenta creada con éxito');
       navigate('/login'); 
 
     } catch (err) {
@@ -104,14 +111,7 @@ function Register() {
               />
             </div>
             
-            {/* --- ¡NUEVO CAMPO DE TELÉFONO! --- */}
-            <div className="form-group">
-              <input 
-                type="tel" id="phone" name="phone"
-                className="form-input" placeholder="Número de teléfono"
-                required disabled={loading}
-              />
-            </div>
+            {/* Eliminado el div del input de teléfono */}
             
             <div className="form-group">
               <input 

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Page.css'; 
-
-const PROFILE_API_URL = 'http://localhost:8081/api/v1/profile';
+// Importamos la URL base
+import { API_BASE_URL } from '../config';
 
 function EditProfile() {
   const navigate = useNavigate();
@@ -12,7 +12,7 @@ function EditProfile() {
   // Estados para user_profiles
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState(''); // <-- ¡NUEVO CAMPO!
+  const [phoneNumber, setPhoneNumber] = useState(''); 
   const [locationCity, setLocationCity] = useState('');
   const [locationDistrict, setLocationDistrict] = useState('');
   const [avatarUrl, setAvatarUrl] = useState('');
@@ -22,32 +22,73 @@ function EditProfile() {
   const [theme, setTheme] = useState('claro');
   const [notifications, setNotifications] = useState(true);
 
-  // 1. Cargar datos del usuario al iniciar
+  // 1. Cargar datos: Primero de LocalStorage (rápido), luego validar con API
   useEffect(() => {
-    try {
-      const userString = localStorage.getItem('user');
-      if (userString) {
-        const user = JSON.parse(userString);
-        
-        setFirstName(user.first_name || '');
-        setLastName(user.last_name || '');
-        setPhoneNumber(user.phone_number || ''); // <-- ¡NUEVO CAMPO!
-        setLocationCity(user.location_city || '');
-        setLocationDistrict(user.location_district || '');
-        setAvatarUrl(user.avatar_url || '');
-
-        setLanguage(user.preferences?.language || 'es');
-        setTheme(user.preferences?.theme || 'claro');
-        setNotifications(user.preferences?.notification_enabled ?? true);
-
-      } else {
-        navigate('/login');
+    const loadData = async () => {
+      const token = localStorage.getItem('access_token');
+      
+      // A. Carga inicial desde LocalStorage para que no se vea vacío
+      try {
+        const userString = localStorage.getItem('user');
+        if (userString) {
+          const user = JSON.parse(userString);
+          populateFields(user);
+        }
+      } catch (e) {
+        console.error("Error leyendo localStorage", e);
       }
-    } catch (e) {
-      console.error("Error al leer el usuario", e);
-      navigate('/login');
-    }
+
+      if (!token) {
+        navigate('/login');
+        return;
+      }
+
+      // B. Consultar al servidor por los datos más recientes
+      try {
+        const response = await fetch(`${API_BASE_URL}/api/v1/profile`, {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+
+        if (response.status === 401 || response.status === 403) {
+          // Si el token venció (límite de 24h), cerramos sesión
+          localStorage.clear();
+          navigate('/login');
+          return;
+        }
+
+        if (response.ok) {
+          const data = await response.json();
+          // Actualizamos los campos con la info fresca del servidor
+          populateFields(data);
+          // Y actualizamos el localStorage para la próxima vez
+          localStorage.setItem('user', JSON.stringify(data));
+        }
+      } catch (err) {
+        console.error("No se pudo conectar con el servidor para refrescar perfil", err);
+        // No redirigimos al login aquí para permitir trabajar offline si ya había datos
+      }
+    };
+
+    loadData();
   }, [navigate]);
+
+  // Función auxiliar para llenar los estados
+  const populateFields = (user) => {
+    setFirstName(user.first_name || '');
+    setLastName(user.last_name || '');
+    setPhoneNumber(user.phone_number || '');
+    setLocationCity(user.location_city || '');
+    setLocationDistrict(user.location_district || '');
+    setAvatarUrl(user.avatar_url || '');
+    
+    setLanguage(user.preferences?.language || 'es');
+    setTheme(user.preferences?.theme || 'claro');
+    // Usamos ?? true para que por defecto sea true si es null/undefined
+    setNotifications(user.preferences?.notification_enabled ?? true);
+  };
 
   // 2. Manejar el envío del formulario
   const handleSubmit = async (e) => {
@@ -58,11 +99,12 @@ function EditProfile() {
     try {
       const token = localStorage.getItem('access_token');
       if (!token) {
-        throw new Error('No estás autenticado.');
+        navigate('/login');
+        return;
       }
 
       // 3. Enviar datos con PUT
-      const response = await fetch(PROFILE_API_URL, {
+      const response = await fetch(`${API_BASE_URL}/api/v1/profile`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -71,7 +113,7 @@ function EditProfile() {
         body: JSON.stringify({
           first_name: firstName,
           last_name: lastName,
-          phone_number: phoneNumber, // <-- ¡NUEVO CAMPO ENVIADO!
+          phone_number: phoneNumber,
           location_city: locationCity,
           location_district: locationDistrict,
           avatar_url: avatarUrl,
@@ -84,12 +126,23 @@ function EditProfile() {
       });
 
       const data = await response.json();
+      
+      if (response.status === 401 || response.status === 403) {
+         localStorage.clear();
+         navigate('/login');
+         throw new Error('Tu sesión ha expirado. Por favor ingresa nuevamente.');
+      }
+
       if (!response.ok) {
         throw new Error(data.message || 'Error al actualizar');
       }
 
+      // Actualizamos localStorage con la respuesta del PUT
       localStorage.setItem('user', JSON.stringify(data));
-      navigate('/profile');
+      
+      // Opcional: mostrar mensaje de éxito o navegar
+      alert('Perfil actualizado correctamente');
+      // navigate('/profile'); // Descomentar si quieres salir de la página tras guardar
 
     } catch (err) {
       setError(err.message);
@@ -127,7 +180,6 @@ function EditProfile() {
           />
         </div>
 
-        {/* --- ¡NUEVO CAMPO DE TELÉFONO! --- */}
         <div className="form-group">
           <label htmlFor="phone_number">Número de Teléfono</label>
           <input 

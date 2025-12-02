@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
-// ¡Añadimos 'useLocation' aquí!
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import MacetyCharacter from '../components/MacetyCharacter';
 import './Auth.css';
-
-const LOGIN_API_URL = 'http://localhost:8081/api/v1/auth/login';
+// Importamos la URL base desde la configuración
+import { API_BASE_URL } from '../config';
 
 function Login() {
   const navigate = useNavigate();
-  const location = useLocation(); // <-- 1. Obtenemos la ubicación
+  const location = useLocation(); // 1. Obtenemos la ubicación
   
   // 2. Revisamos si el 'ProtectedRoute' nos envió aquí
   const fromPage = location.state?.from?.pathname || '/';
@@ -28,7 +27,8 @@ function Login() {
     const password = e.target.password.value;
 
     try {
-      const response = await fetch(LOGIN_API_URL, {
+      // USAMOS LA VARIABLE IMPORTADA AQUÍ
+      const response = await fetch(`${API_BASE_URL}/api/v1/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
